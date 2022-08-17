@@ -9,5 +9,9 @@ jobs:
     steps:
       - name: hello world
         run: echo "Hello World!"
-      - name: container
+      - name: Doenload repo
+        uses: actions/download-artifact@v2
+        with:
+          name: code
+          path: .
         run: echo "container"
