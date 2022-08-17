@@ -2,14 +2,14 @@ name: pipeline
 on: push
 
 jobs:
-  Clone-down:
+  Clone_down:
     name: Clone down repository
     runs-on: ubuntu-latest
     container: golang
     steps:
-    - uses: actions/checkout@v2
-  
-  Run test:
+    - uses: actions/checkout@v2  
+  Run_test:
+    name: Run test
     runs-on: ubuntu-latest
-    - name: Run test
+    steps:
       run: echo "Hello World!"
