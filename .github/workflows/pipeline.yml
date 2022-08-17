@@ -6,4 +6,6 @@ jobs:
     name: Clone down repository
     runs-on: ubuntu-latest
     steps:
-      run: echo "Hello World!"
+      steps:
+      - name: hello world
+        run: echo "Hello World!"
