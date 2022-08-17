@@ -8,7 +8,8 @@ jobs:
     container: golang
     steps:
     - uses: actions/checkout@v2
-
-    # run test
-    - name: running test
-    run: echo "Hello World!"
+  
+  Run test:
+    runs-on: ubuntu-latest
+    - name: Run test
+      run: echo "Hello World!"
