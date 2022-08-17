@@ -1,0 +1,10 @@
+name: pipeline
+on: push
+
+jobs:
+  Test:
+    runs-on: ubuntu-latest
+    container: golang
+    steps:
+      - name: running test
+        run: echo "Hello World!"
