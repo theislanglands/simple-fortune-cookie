@@ -5,9 +5,9 @@ jobs:
   Clone_down:
     name: Clone down repository
     runs-on: ubuntu-latest
+    container: golang
     steps:
       - name: hello world
         run: echo "Hello World!"
       - name: container
-        container: golang
         run: echo "container"
