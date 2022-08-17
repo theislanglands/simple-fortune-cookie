@@ -3,13 +3,12 @@ on: push
 
 jobs:
   Clone_down:
-    name: Clone down repository
+  - name: Clone down repository
     runs-on: ubuntu-latest
     container: golang
     steps:
-    - uses: actions/checkout@v2  
-  Run_test:
-    name: Run test
-    runs-on: ubuntu-latest
-    steps:
+      uses: actions/checkout@v2
+      with: 
+        name: code
+        path: .  
       run: echo "Hello World!"
