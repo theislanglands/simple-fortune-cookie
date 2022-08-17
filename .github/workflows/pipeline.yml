@@ -2,9 +2,13 @@ name: pipeline
 on: push
 
 jobs:
-  Test:
+  Clone-down:
+    name: Clone down repository
     runs-on: ubuntu-latest
     container: golang
     steps:
-      - name: running test
-        run: echo "Hello World!"
+    - uses: actions/checkout@v2
+
+    # run test
+    - name: running test
+    run: echo "Hello World!"
