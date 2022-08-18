@@ -38,18 +38,5 @@ jobs:
     container: golang
 
     steps: 
-    - name: Runt test
+    - name: Run test
       run: go test ./frontend ./...
-
-
-        # build backend
-#      - name: Build Backend
-#        run: go build -v ./backend go build backend
-
-        # build frontend
-      - name: Build Frontend
-        run: go build -v ./frontend go build frontend
-
-        # run test
-      - name: Run test
-        run: go test ./frontend
