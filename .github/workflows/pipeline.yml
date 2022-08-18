@@ -21,7 +21,7 @@ jobs:
     name: Build Backend
     runs-on: ubuntu-latest
     needs: Clone_down
-    container: golang
+    #container: golang
 
     steps:
     - name: Download code
@@ -30,13 +30,19 @@ jobs:
         name: code
         path: .
     - name: build stack
-      run: docker-compose up -d
+      run: chmod +x && docker-compose up -d
 
   Test:
     name: Test
     runs-on: ubuntu-latest
-    container: golang
+    needs: Build
+    #container: golang
 
     steps: 
+    - name: Download code
+      uses: actions/download-artifact@v2
+      with:
+        name: code
+        path: .
     - name: Run test
       run: go test ./frontend ./...
