@@ -1,56 +1,38 @@
 ---
 version: '3'
 
-volumes:
-# TODO add named volumes
-  wordpress:
-  db:
-
 services:
-  reverse-proxy-nginx:
-    container_name: nginx
-    # TODO configure nginx
-    # Use the provided Dockerfile exercise3/Dockerfile to build an nginx image 
-    build: .
-      #context: .
-      #dockerfile: Dockerfile
-     
-    ports: 
-      - "80:80"
+  backend:
+    container_name: backend
+    build: ./backend 
 
 # TODO configure wordpress
-  wordpress:
-    container_name: wordpress
-    image: wordpress:5.7.2-apache
+  frontend:
+    container_name: frontend
+    build: ./frontend 
     #Configure the environment variables to connect to the database.
     environment:
-      - WORDPRESS_DB_HOST=db
-      - WORDPRESS_DB_USER=root
-      - WORDPRESS_DB_PASSWORD=wordpress
-      - WORDPRESS_DB_NAME=wpdb
-    
-    #The container must mount the wordpress volume to the path /var/www/html
-    volumes:
-      - wordpress:/var/www/html
-    
+      - BACKEND_DNS=172.17.0.1
     depends_on: 
-      - db
+      - backend
+    ports:
+      - "8080:8080"
 
 
     # TODO configure mysql
-  db:
-    container_name: db
+  #db:
+    #container_name: db
   #Use the official mysql image with tag mysql:5.7.
-    image: mysql:5.7
+    #image: mysql:5.7
   #Configure environment variables to create an initial database and set user credentials
-    environment:
-      - MYSQL_DATABASE=wpdb
+    #environment:
+      #- MYSQL_DATABASE=wpdb
       # MYSQL_HOST: db
-      - MYSQL_ROOT_PASSWORD=wordpress
+      #- MYSQL_ROOT_PASSWORD=wordpress
       # MYSQL_USER: root
   #The container must mount the db volume to the path /var/lib/mysql
-    volumes:
-      - db:/var/lib/mysql
+    #volumes:
+      #- db:/var/lib/mysql
 
 
 
