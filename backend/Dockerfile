@@ -1,10 +1,9 @@
 # build stage
-FROM golang:1.13.2 AS builder
-ADD . /src/
-RUN cd /src && go build -o goapp
-
-# final stage
-FROM alpine
-WORKDIR /app
-COPY --from=builder /src/goapp /app/
-ENTRYPOINT ./goapp
+FROM golang:1.18
+WORKDIR /usr/src/app
+COPY go.mod go.sum ./
+RUN go mod download && go mod verify
+COPY . .
+RUN go build -v -o /usr/local/bin/backend ./...
+EXPOSE 9000
+CMD ["backend"]
