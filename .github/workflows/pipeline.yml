@@ -30,7 +30,7 @@ jobs:
         name: code
         path: .
     - name: build stack
-      run: docker-compose up -d
+      run: docker-compose up -d 
 
   Test:
     name: Test
@@ -45,4 +45,4 @@ jobs:
         name: code
         path: .
     - name: Run test
-      run: go test ./frontend ./...
+      run: cd frontend/ && go test -v
